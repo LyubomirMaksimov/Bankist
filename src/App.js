@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import "./App.css";
+import Navbar from "./components/NavBar";
+import Header from "./components/Header";
+import Features from "./components/Features";
+import Operations from "./components/Operations";
+import Testimonials from "./components/Testimonials";
+import SignUp from "./components/SignUp";
+import Footer from "./components/Footer";
+import Module from "./components/Module";
 
 function App() {
+  const [hidden, setHidden] = useState(true);
+
+  const ModuleHandler = () => {
+    setHidden(!hidden);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <link
+        href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&amp;display=swap"
+        rel="stylesheet"
+      ></link>
+      <Navbar openModal={ModuleHandler} />
+      <Header />
+      <Features />
+      <Operations />
+      <Testimonials />
+      <SignUp openModal={ModuleHandler} />
+      <Footer />
+      <Module modalHidden={hidden} hideModal={ModuleHandler} />
+      <div className={`overlay ${hidden ? "hidden" : ""}`}></div>
     </div>
   );
 }
